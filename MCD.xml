@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<Database>
+   <Name>MCD</Name>
+   <Table>
+      <Name>Client</Name>
+      <Comment>informations about users</Comment>
+      <Column>
+         <Name>IdClient</Name>
+         <Type>INT</Type>
+      </Column>
+      <Column>
+         <Name>Nom</Name>
+         <Type>VARCHAR(50)</Type>
+         <Property>NOT NULL</Property>
+      </Column>
+      <Column>
+         <Name>Prenom</Name>
+         <Type>VARCHAR(50)</Type>
+         <Property>NOT NULL</Property>
+      </Column>
+      <Column>
+         <Name>AddresseMail</Name>
+         <Type>VARCHAR(20)</Type>
+         <Property>NOT NULL</Property>
+      </Column>
+      <Column>
+         <Name>MotDePasse</Name>
+         <Type>VARCHAR(50)</Type>
+         <Property>NOT NULL</Property>
+      </Column>
+      <Column>
+         <Name>DateDeNaissance</Name>
+         <Type>DATE</Type>
+         <Property>NOT NULL</Property>
+      </Column>
+      <Column>
+         <Name>NumeroDeTelephone</Name>
+         <Type>SMALLINT</Type>
+         <Property>NOT NULL</Property>
+      </Column>
+      <Column>
+         <Name>Anciennete</Name>
+         <Type>DATE</Type>
+         <Property>NOT NULL</Property>
+      </Column>
+      <PK>
+         <Key>IdClient</Key>
+      </PK>
+   </Table>
+   <Table>
+      <Name>Adresse</Name>
+      <Comment>adress from users</Comment>
+      <Column>
+         <Name>IdAdresse</Name>
+         <Type>INT</Type>
+      </Column>
+      <Column>
+         <Name>TypeAdresse</Name>
+         <Type>VARCHAR(20)</Type>
+         <Property>NOT NULL</Property>
+      </Column>
+      <Column>
+         <Name>NomDuDestinataire</Name>
+         <Type>VARCHAR(50)</Type>
+         <Property>NOT NULL</Property>
+      </Column>
+      <Column>
+         <Name>Adresse</Name>
+         <Type>VARCHAR(50)</Type>
+         <Property>NOT NULL</Property>
+      </Column>
+      <Column>
+         <Name>Ville</Name>
+         <Type>VARCHAR(20)</Type>
+         <Property>NOT NULL</Property>
+      </Column>
+      <Column>
+         <Name>NumeroDeTelephone</Name>
+         <Type>SMALLINT</Type>
+         <Property>NOT NULL</Property>
+      </Column>
+      <Column>
+         <Name>CodePostal</Name>
+         <Type>VARCHAR(5)</Type>
+         <Property>NOT NULL</Property>
+      </Column>
+      <Column>
+         <Name>Pays</Name>
+         <Type>VARCHAR(50)</Type>
+         <Property>NOT NULL</Property>
+      </Column>
+      <Column>
+         <Name>IdClient</Name>
+         <Type>INT</Type>
+         <Property>NOT NULL</Property>
+      </Column>
+      <PK>
+         <Key>IdAdresse</Key>
+      </PK>
+      <FK>
+         <Key>IdClient</Key>
+         <Reference>Client(IdClient)</Reference>
+      </FK>
+   </Table>
+   <Table>
+      <Name>Produit</Name>
+      <Comment>Product selling from your website</Comment>
+      <Column>
+         <Name>IdProduit</Name>
+         <Type>INT</Type>
+      </Column>
+      <Column>
+         <Name>NomProduit</Name>
+         <Type>VARCHAR(50)</Type>
+         <Property>NOT NULL</Property>
+      </Column>
+      <Column>
+         <Name>DescriptionDuProduit</Name>
+         <Type>VARCHAR(200)</Type>
+         <Property>NOT NULL</Property>
+      </Column>
+      <Column>
+         <Name>Prix</Name>
+         <Type>DECIMAL(10,2)</Type>
+         <Property>NOT NULL</Property>
+      </Column>
+      <Column>
+         <Name>Categorie</Name>
+         <Type>VARCHAR(30)</Type>
+         <Property>NOT NULL</Property>
+      </Column>
+      <Column>
+         <Name>Stock</Name>
+         <Type>INT</Type>
+         <Property>NOT NULL</Property>
+      </Column>
+      <PK>
+         <Key>IdProduit</Key>
+      </PK>
+   </Table>
+   <Table>
+      <Name>Panier</Name>
+      <Comment>user cart (list of items waiting to be purchased)</Comment>
+      <Column>
+         <Name>IdPanier</Name>
+         <Type>INT</Type>
+      </Column>
+      <Column>
+         <Name>Quantite</Name>
+         <Type>BIGINT</Type>
+         <Property>NOT NULL</Property>
+      </Column>
+      <Column>
+         <Name>IdClient</Name>
+         <Type>INT</Type>
+         <Property>NOT NULL</Property>
+      </Column>
+      <PK>
+         <Key>IdPanier</Key>
+      </PK>
+      <FK>
+         <Key>IdClient</Key>
+         <Reference>Client(IdClient)</Reference>
+      </FK>
+   </Table>
+   <Table>
+      <Name>Commande</Name>
+      <Comment>user shopping list (list of items being delivered)</Comment>
+      <Column>
+         <Name>IdCommandes</Name>
+         <Type>INT</Type>
+      </Column>
+      <Column>
+         <Name>DatedeCommande</Name>
+         <Type>DATETIME</Type>
+         <Property>NOT NULL</Property>
+      </Column>
+      <Column>
+         <Name>StatusDeLaCommande</Name>
+         <Type>VARCHAR(15)</Type>
+         <Property>NOT NULL</Property>
+      </Column>
+      <Column>
+         <Name>IdAdresse</Name>
+         <Type>INT</Type>
+         <Property>NOT NULL</Property>
+      </Column>
+      <Column>
+         <Name>IdClient</Name>
+         <Type>INT</Type>
+         <Property>NOT NULL</Property>
+      </Column>
+      <PK>
+         <Key>IdCommandes</Key>
+      </PK>
+      <FK>
+         <Key>IdAdresse</Key>
+         <Reference>Adresse(IdAdresse)</Reference>
+      </FK>
+      <FK>
+         <Key>IdClient</Key>
+         <Reference>Client(IdClient)</Reference>
+      </FK>
+   </Table>
+   <Table>
+      <Name>Facture</Name>
+      <Comment> order historyall the junction table</Comment>
+      <Column>
+         <Name>IdFactures</Name>
+         <Type>INT</Type>
+      </Column>
+      <Column>
+         <Name>DatedeFacturation</Name>
+         <Type>DATETIME</Type>
+         <Property>NOT NULL</Property>
+      </Column>
+      <Column>
+         <Name>MontantTotal</Name>
+         <Type>DECIMAL(10,2)</Type>
+         <Property>NOT NULL</Property>
+      </Column>
+      <Column>
+         <Name>IdClient</Name>
+         <Type>INT</Type>
+         <Property>NOT NULL</Property>
+      </Column>
+      <PK>
+         <Key>IdFactures</Key>
+      </PK>
+      <FK>
+         <Key>IdClient</Key>
+         <Reference>Client(IdClient)</Reference>
+      </FK>
+   </Table>
+   <Table>
+      <Name>MethodeDePaiement</Name>
+      <Comment> payment method from users with informations (IBAN, card</Comment>
+      <Comment>number, etc...)</Comment>
+      <Column>
+         <Name>IdPaiement</Name>
+         <Type>INT</Type>
+      </Column>
+      <Column>
+         <Name>TypePaiement</Name>
+         <Type>VARCHAR(20)</Type>
+         <Property>NOT NULL</Property>
+      </Column>
+      <Column>
+         <Name>InformationsDePaiement</Name>
+         <Type>VARCHAR(100)</Type>
+         <Property>NOT NULL</Property>
+      </Column>
+      <PK>
+         <Key>IdPaiement</Key>
+      </PK>
+   </Table>
+   <Table>
+      <Name>Utilise</Name>
+      <Column>
+         <Name>IdPaiement</Name>
+         <Type>INT</Type>
+      </Column>
+      <Column>
+         <Name>IdClient</Name>
+         <Type>INT</Type>
+      </Column>
+      <PK>
+         <Key>IdPaiement, IdClient</Key>
+      </PK>
+      <FK>
+         <Key>IdPaiement</Key>
+         <Reference>MethodeDePaiement(IdPaiement)</Reference>
+      </FK>
+      <FK>
+         <Key>IdClient</Key>
+         <Reference>Client(IdClient)</Reference>
+      </FK>
+   </Table>
+   <Table>
+      <Name>Achete</Name>
+      <Column>
+         <Name>IdClient</Name>
+         <Type>INT</Type>
+      </Column>
+      <Column>
+         <Name>IdProduit</Name>
+         <Type>INT</Type>
+      </Column>
+      <PK>
+         <Key>IdClient, IdProduit</Key>
+      </PK>
+      <FK>
+         <Key>IdClient</Key>
+         <Reference>Client(IdClient)</Reference>
+      </FK>
+      <FK>
+         <Key>IdProduit</Key>
+         <Reference>Produit(IdProduit)</Reference>
+      </FK>
+   </Table>
+   <Table>
+      <Name>Inclut</Name>
+      <Column>
+         <Name>IdProduit</Name>
+         <Type>INT</Type>
+      </Column>
+      <Column>
+         <Name>IdCommandes</Name>
+         <Type>INT</Type>
+      </Column>
+      <PK>
+         <Key>IdProduit, IdCommandes</Key>
+      </PK>
+      <FK>
+         <Key>IdProduit</Key>
+         <Reference>Produit(IdProduit)</Reference>
+      </FK>
+      <FK>
+         <Key>IdCommandes</Key>
+         <Reference>Commande(IdCommandes)</Reference>
+      </FK>
+   </Table>
+</Database>
