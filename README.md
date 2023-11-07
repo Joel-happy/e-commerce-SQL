@@ -1,2 +1,2 @@
-# e-commerce-SQL.
+# e-commerce-SQL
 Projet SQL
